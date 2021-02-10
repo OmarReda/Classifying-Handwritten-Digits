@@ -34,6 +34,44 @@ A fully connected network is our RegularNet where each parameter is linked to on
   <img src="https://github.com/OmarReda/Classifying-Handwritten-Digits/blob/main/MNIST.gif" width="700">
 </p>
 
+# Libraries Used
+* TensorFlow
+* Matplotlib
+* Keras
+* SGD Optimizer
+
+# Loading Data
+```python
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+```
+
+# Images Reshape
+```python
+x_train = x_train.reshape(x_train.shape[0], 28, 28, 1)
+x_test = x_test.reshape(x_test.shape[0], 28, 28, 1)
+```
+
+# Model Structure
+* Input_shape = (28, 28, 1)
+* Convolution layer with 28 filter and kerel size (3,3).
+* MaxPooling layer with size (2,2).
+* Fully connected layer with 128 neurons with activation function ReLU.
+* Dropout layer with 0.2.
+* Fully connected layer with 10 neurons with activation function ReLU.
+* EPOCHS = 10
+* Optimizer during complile is Adam.
+* Loss during compile is Categorical Crossentropy
+
+# Testing
+```python
+image_index = 9431
+plt.imshow(x_test[image_index].reshape(28, 28),cmap='Greys')
+pred = model.predict(x_test[image_index].reshape(1, 28, 28, 1))
+print(pred.argmax())
+```
+
 # Results
+> Model Accuracy is 98.44%.
+
 <img src="https://github.com/OmarReda/Classifying-Handwritten-Digits/blob/main/Result1.PNG" width="250" height="250"><img src="https://github.com/OmarReda/Classifying-Handwritten-Digits/blob/main/Result2.PNG" width="250" height="250"><img src="https://github.com/OmarReda/Classifying-Handwritten-Digits/blob/main/Result3.PNG" width="250" height="250">
 
